@@ -1,0 +1,2 @@
+Manifest-Version: Dev1016a
+Main-Class: goodtime.Launcher
