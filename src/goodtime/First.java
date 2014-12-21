@@ -1,9 +1,6 @@
-/*
-package Core;
+package goodtime;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -12,20 +9,20 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.*;
 
-public class FirstTime extends JDialog {
+public class First extends JDialog {
 
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
-	 *
+	 */
 	public static void main(String[] args) {
 		try {
-			FirstTime dialog = new FirstTime();
+			First dialog = new First();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -34,9 +31,9 @@ public class FirstTime extends JDialog {
 	}
 
 	/**
-	 * Create the dialog.
-	 *
-	public FirstTime() {
+	 *Create the dialog.
+	 */
+	public First() {
 		setTitle("\u7B2C\u4E00\u6B21\u8FD0\u884C");
 		setBounds(100, 100, 461, 187);
 		getContentPane().setLayout(new BorderLayout());
@@ -71,24 +68,10 @@ public class FirstTime extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
-				File file = new File("config.cfg");
-				try {
-					FileWriter out = new FileWriter(file);
-					String name = textField.getText();
-					String password = textField_1.getText();
-					out.write("//GoodTime Luancher Config");
-					out.write(name);
-					out.write("\r\n");
-					out.write(password);
-					out.close();
-
-				} catch (Exception e1) {
-					
-				}
+				
 			}
 		});
 		button.setBounds(311, 86, 124, 52);
 		contentPanel.add(button);
 	}
 }
-*/

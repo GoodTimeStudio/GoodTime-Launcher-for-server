@@ -1,94 +1,39 @@
 package goodtime;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.Set;
 
-public class config
+import javax.swing.JFrame;
+
+
+public class Config
 {
-  static ArrayList lvalue;
-  static ArrayList rvalue;
-  static File CfgFile;
-  static Properties p = new Properties();
+	public static void configcheck()
+	{
+		File cfg = new File("config.properties");
+		{
+			if (cfg.exists()){
+				System.out.println("文件已存在");
+				CoreGui frame = new CoreGui();
+				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				frame.setVisible(true);//设置窗体为显示
+			}
+			else {
+				First.main(null);
+				try {
+					cfg.createNewFile();
+					} 
+				catch (IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public static void config()
+	{
+		
+	}
+}  
   
-  
-  public static String assVersion = "";
-  public static String GameDir = "";
-  public static String tpf = "";
-  public static String JavaPath = "";
-  public static ArrayList unzipAbledLibs;
-  public static ArrayList NotFoundedLibs;
-  public static String UserName = "";
-  public static String memory = "";
-  public static String Rundir = "";
-  public static String token = "";
-  public static String downUrl = "";
-  public static boolean Downok = false;
-  public static String twitchToken = "";
-  public static String uuid = "";
-  
-  
-  public static void Load(File ConfigFile)
-    throws FileNotFoundException, IOException
-  {
-    lvalue = new ArrayList();
-    rvalue = new ArrayList();
-    
-
-
-
-    CfgFile = ConfigFile;
-    
-
-
-
-    p.load(new FileReader(ConfigFile));
-    System.out.println(ConfigFile);
-    Object[] o = p.stringPropertyNames().toArray();
-    for (Object o1 : o) {
-      lvalue.add(o1.toString());
-    }
-    for (int i = 0; i < p.size(); i++) {
-      rvalue.add(p.get(lvalue.get(i)));
-    }
-  }
-  
-  public static String getConfig(String key)
-  {
-    if ((!lvalue.contains(key)) && 
-      (key.equals("GameDir"))) {
-      setConfig(key,GameDir);
-    }
-    return rvalue.get(lvalue.indexOf(key)).toString();
-  }
-  
-  public static void setConfig(String key, String value)
-  {
-    if (!lvalue.contains(key))
-    {
-      rvalue.add(value);
-      lvalue.add(key);
-      p.setProperty(key, value);
-    }
-    else
-    {
-      rvalue.set(lvalue.indexOf(key), value);
-      p.setProperty(key, value);
-    }
-  }
-  
-  public static void Save()
-  {
-    try
-    {
-      p.store(new FileWriter(CfgFile), "//GoodTime Launcher Config\r\n//GoodTime启动器配置文件");
-    }
-    catch (IOException ie) {}
-  }
-}
