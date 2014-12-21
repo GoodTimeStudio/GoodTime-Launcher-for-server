@@ -24,7 +24,7 @@ public static String token = "";
 	
 	public static void main(String[] args)
 	{
-		Config.WriteConfig();
+		
 	}
 	
 	public static void ConfigCheck()

@@ -1,2 +1,3 @@
-Manifest-Version: Dev1016a
-Main-Class: goodtime.Launcher
+Manifest-Version: Dev-1221c
+Main-Class: goodtime.CoreGui
+Class-Path: . lib/miglayout15-swing

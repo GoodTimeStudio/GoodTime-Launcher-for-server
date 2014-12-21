@@ -1,6 +1,7 @@
 package goodtime;
 
 import java.awt.BorderLayout;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -16,7 +17,7 @@ import javax.swing.JPasswordField;
 
 
 public class Options extends JDialog {
-	static Options dialog = new Options();
+	static Options opt = new Options();
 	/**
 	 * 
 	 */
@@ -37,8 +38,8 @@ public class Options extends JDialog {
 	public static void main(String[] args) throws FileNotFoundException {	
 		//-------------
 		try {
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
+			opt.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			opt.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,20 +66,20 @@ public class Options extends JDialog {
 		
 		JButton btnNewButton = new JButton("\u4FDD\u5B58\u8BBE\u7F6E");
 		btnNewButton.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("deprecation")
 			@Override
 			public void mouseClicked(MouseEvent arg0) //保存设置
 			{
 				Config.java = textField.getText();//JAVA路径
 				Config.username = textField_1.getText();
 				Config.memory = textField_2.getText();//最大内存
-				@SuppressWarnings("deprecation")
 				String pwd = passwordField.getText();//先加密。。
 				//..
 				Config.password = pwd;
 				Config.WriteConfig();
-				dialog.dispose();
-				CoreGui frame = new CoreGui();
-				frame.setVisible(true);
+				opt.setEnabled(false);
+				opt.setVisible(false);
+				opt.dispose();
 			}
 		});
 		btnNewButton.setBounds(407, 158, 93, 51);

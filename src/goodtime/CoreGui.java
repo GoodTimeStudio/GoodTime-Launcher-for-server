@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 
 
 public class CoreGui extends JFrame {
@@ -88,8 +89,10 @@ public class CoreGui extends JFrame {
 		btnNewButton_2.setFont(new Font("ºÚÌå", Font.PLAIN, 14));
 		btnNewButton_2.setBounds(615, 508, 167, 84);
 		contentPane.add(btnNewButton_2);
-			
-		background = new ImageIcon("bg.png");// ±³¾°Í¼Æ¬
+		
+		URL bgtp = this.getClass().getResource("bg.jpg");
+		System.out.println(bgtp);
+		background = new ImageIcon(bgtp);// ±³¾°Í¼Æ¬
 		JLabel bg = new JLabel(background);
 		bg.setBounds(0, 0, background.getIconWidth(),
 		background.getIconHeight());

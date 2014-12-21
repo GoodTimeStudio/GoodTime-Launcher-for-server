@@ -51,12 +51,12 @@ public class First extends JDialog {
 		label_1.setBounds(10, 10, 70, 15);
 		contentPanel.add(label_1);
 		
-		textField = new JTextField();
+		textField = new JTextField();//用户名
 		textField.setBounds(81, 7, 92, 21);
 		contentPanel.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();
+		textField_1 = new JTextField();//密码
 		textField_1.setBounds(81, 43, 92, 21);
 		contentPanel.add(textField_1);
 		textField_1.setColumns(10);
@@ -67,9 +67,13 @@ public class First extends JDialog {
 		
 		JButton button = new JButton("\u5B8C\u6210\u8BBE\u7F6E");
 		button.addMouseListener(new MouseAdapter() {
+			@SuppressWarnings("unused")
 			@Override
 			public void mouseClicked(MouseEvent arg0)//鼠标单机保存设置
 			{
+				String username = textField.getText();
+				String password = textField_1.getText();
+				Config.WriteConfig();
 				dialog.dispose();
 				CoreGui frame = new CoreGui();
 				frame.setVisible(true);
