@@ -28,7 +28,7 @@ public class CoreGui extends JFrame {
 
 	public static void main(String[] args) 
 	{		
-		Config.configcheck();			
+		Config.ConfigCheck();			
 	}
 
 

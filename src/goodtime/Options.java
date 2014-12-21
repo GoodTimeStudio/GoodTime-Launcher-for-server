@@ -1,9 +1,6 @@
 package goodtime;
 
 import java.awt.BorderLayout;
-
-
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -28,17 +25,16 @@ public class Options extends JDialog {
 	 * 
 	 */
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1 = null;
-	private JTextField textField_2;
-	private JPasswordField passwordField;
+	static JTextField textField;
+	static JTextField textField_1 = null;
+	static JTextField textField_2;
+	static JPasswordField passwordField;
 	
 	/**
 	 * Launch the application.
 	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
-				
+	public static void main(String[] args) throws FileNotFoundException {	
 		//-------------
 		try {
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -46,11 +42,13 @@ public class Options extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	/**
 	 * Create the dialog.
 	 */
+
 	public Options() {
 		setTitle("\u8BBE\u7F6E");
 		setBounds(100, 100, 526, 258);
@@ -70,7 +68,17 @@ public class Options extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent arg0) //保存设置
 			{
+				Config.java = textField.getText();//JAVA路径
+				Config.username = textField_1.getText();//用户名
+				Config.memory = textField_2.getText();//最大内存
+				@SuppressWarnings("deprecation")
+				String pwd = passwordField.getText();//先加密。。
+				//..
+				Config.password = pwd;
+				Config.WriteConfig();
 				dialog.dispose();
+				CoreGui frame = new CoreGui();
+				frame.setVisible(true);
 			}
 		});
 		btnNewButton.setBounds(407, 158, 93, 51);
@@ -119,6 +127,7 @@ public class Options extends JDialog {
 		passwordField.setBounds(80, 46, 112, 21);
 		contentPanel.add(passwordField);//密码
 		
-		
+		Config.ReadConfig();
+
 	}
 }
