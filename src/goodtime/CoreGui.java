@@ -1,5 +1,6 @@
 package goodtime;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -20,6 +21,15 @@ public class CoreGui extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
+	/*
+	 * ±³¾°²âÊÔ
+	 */
+	private JPanel imagePanel;
+	private ImageIcon background;
+	
+	 /* 
+	 */
 
 	/**
 	 * Launch the application.
@@ -38,7 +48,7 @@ public class CoreGui extends JFrame {
 	public CoreGui() {
 		setTitle("GoodTime\u542F\u52A8\u5668");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 737, 458);
+		setBounds(100, 100, 928, 640);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -59,12 +69,12 @@ public class CoreGui extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("ºÚÌå", Font.PLAIN, 14));
-		btnNewButton.setBounds(601, 372, 110, 37);
+		btnNewButton.setBounds(792, 555, 110, 37);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("\u79BB\u7EBF\u6E38\u620F");
 		btnNewButton_1.setFont(new Font("ºÚÌå", Font.PLAIN, 14));
-		btnNewButton_1.setBounds(601, 325, 110, 37);
+		btnNewButton_1.setBounds(792, 508, 110, 37);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("\u5F00\u542FGoodTime\u4E4B\u65C5\uFF01");
@@ -72,19 +82,26 @@ public class CoreGui extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				//Æô¶¯
-
+				Launcher.main(null);
 			}
 		});
 		btnNewButton_2.setFont(new Font("ºÚÌå", Font.PLAIN, 14));
-		btnNewButton_2.setBounds(424, 325, 167, 84);
+		btnNewButton_2.setBounds(615, 508, 167, 84);
 		contentPane.add(btnNewButton_2);
+			
+		background = new ImageIcon("bg.png");// ±³¾°Í¼Æ¬
+		JLabel bg = new JLabel(background);
+		bg.setBounds(0, 0, background.getIconWidth(),
+		background.getIconHeight());
+		imagePanel = (JPanel) this.getContentPane();
+		imagePanel.setOpaque(false);
+		this.getLayeredPane().setLayout(null);
+		  // °Ñ±³¾°Í¼Æ¬Ìí¼Óµ½·Ö²ã´°¸ñµÄ×îµ×²ã×÷Îª±³¾°
+		this.getLayeredPane().add(bg, new Integer(Integer.MIN_VALUE));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(background.getIconWidth(), background.getIconHeight());
+		this.setResizable(false);
+		this.setVisible(true);
 		
-		JLabel lblGoodtimeLuancherDev = new JLabel("GoodTime Luancher Dev 1221b");
-		lblGoodtimeLuancherDev.setBounds(0, 404, 193, 15);
-		contentPane.add(lblGoodtimeLuancherDev);
-		
-		JLabel lblGoodtiwicpnet = new JLabel("goodti.wicp.net");
-		lblGoodtiwicpnet.setBounds(0, 0, 139, 15);
-		contentPane.add(lblGoodtiwicpnet);
 	}
 }
