@@ -1,14 +1,12 @@
 package goodtime;
 
 import java.awt.BorderLayout;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,13 +16,13 @@ public class First extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
 	private JTextField textField_1;
-	static First dialog = new First();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
+			First dialog = new First();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -68,11 +66,9 @@ public class First extends JDialog {
 		JButton button = new JButton("\u5B8C\u6210\u8BBE\u7F6E");
 		button.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0)//鼠标单机保存设置
+			public void mouseClicked(MouseEvent arg0)
 			{
-				dialog.dispose();
-				CoreGui frame = new CoreGui();
-				frame.setVisible(true);
+				
 			}
 		});
 		button.setBounds(311, 86, 124, 52);

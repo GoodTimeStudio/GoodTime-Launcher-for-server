@@ -3,7 +3,6 @@ package goodtime;
 import java.awt.BorderLayout;
 
 
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -15,11 +14,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 
+
 import javax.swing.JPasswordField;
 
 
 public class Options extends JDialog {
-	static Options dialog = new Options();
+
 	/**
 	 * 
 	 */
@@ -33,6 +33,15 @@ public class Options extends JDialog {
 	private JTextField textField_2;
 	private JPasswordField passwordField;
 	
+	
+	public static String username = "";
+	public static String password = "";
+	public static String Maxmemory = "";
+	public static String java = "";
+	public static String assistdir = "";
+	public static String mcdir = "";
+
+
 	/**
 	 * Launch the application.
 	 * @throws FileNotFoundException 
@@ -41,6 +50,7 @@ public class Options extends JDialog {
 				
 		//-------------
 		try {
+			Options dialog = new Options();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -68,9 +78,29 @@ public class Options extends JDialog {
 		JButton btnNewButton = new JButton("\u4FDD\u5B58\u8BBE\u7F6E");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) //保存设置
-			{
-				dialog.dispose();
+			public void mouseClicked(MouseEvent arg0) {
+				String name = textField_1.getText();
+				@SuppressWarnings("deprecation")
+				String pwd = passwordField.getText();
+				String Max = textField_2.getText();
+				String Java = textField.getText();
+				File file = new File("Start.bat");
+				String cfg[] = {""};
+				try {
+					FileWriter fw = new FileWriter(file); // 创建FileWriter类对象
+					// 创建BufferedWriter类对象
+					BufferedWriter bufw = new BufferedWriter(fw); 
+					for (int k = 0; k < cfg.length; k++) { // 循环遍历数组
+						bufw.write(cfg[k]); // 将字符串数组中元素写入到磁盘文件中
+						bufw.newLine(); // 将数组中的单个元素以单行的形式写入文件
+					}
+					bufw.close(); // 将BufferedWriter流关闭
+					fw.close(); // 将FileWriter流关闭
+				} catch (Exception e) { // 处理异常
+					e.printStackTrace();
+				}
+
+
 			}
 		});
 		btnNewButton.setBounds(407, 158, 93, 51);
@@ -119,6 +149,26 @@ public class Options extends JDialog {
 		passwordField.setBounds(80, 46, 112, 21);
 		contentPanel.add(passwordField);//密码
 		
-		
+		File file = new File("config.cfg");
+
+		try { 
+			BufferedReader filebr = new BufferedReader(new FileReader(file));
+			@SuppressWarnings("unused")
+			String str=filebr.readLine();
+			String str1=filebr.readLine();//2名字
+			String str2=filebr.readLine();//3密码
+			String str3=filebr.readLine();//4Max Ram
+			String str4=filebr.readLine();//5JAVA
+			String str1f = str1;  str1f=str1f.replace("游戏名字=","");
+			String str2f = str2;  str2f=str2f.replace("密码=", "");
+			String str3f = str3;  str3f=str3f.replace("最大内存=", "");
+			String str4f = str4;  str4f=str4f.replace("JAVA路径=", "");
+			textField_1.setText(str1f);
+			passwordField.setText(str2f);
+			textField_2.setText(str3f);
+			textField.setText(str4f);
+			textField_1.setText(str1f);
+			filebr.close();
+		} catch (IOException e) { e.printStackTrace(); }
 	}
 }
