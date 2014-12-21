@@ -24,7 +24,7 @@ public static String token = "";
 	
 	public static void main(String[] args)
 	{
-
+		Config.WriteConfig();
 	}
 	
 	public static void ConfigCheck()
@@ -33,9 +33,19 @@ public static String token = "";
 		{
 			if (cfg.exists()){
 				System.out.println("文件已存在");
+				long l = cfg.length();
+				if (l<101)
+				{
+					Config.WriteConfig();
+					System.out.println("由于文件不完整，已重写");
+				}
+			else
+			{
 				CoreGui frame = new CoreGui();
 				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				frame.setVisible(true);//设置窗体为显示
+			}
+
 			}
 			else {
 				First.main(null);
@@ -50,7 +60,6 @@ public static String token = "";
 		}
 	}
 	
-	@SuppressWarnings("unused")
 	public static void ReadConfig()
 	{
 		FileInputStream fis = null;
@@ -70,7 +79,7 @@ public static String token = "";
 		}
 		String username= props.getProperty("name");
 		String password= props.getProperty("password");
-		String memory = props.getProperty("Max-Memory");
+		String memory = props.getProperty("Max-memory");
 		String java = props.getProperty("Java-Path");
 		Options.textField.setText(java);
 		Options.textField_1.setText(username);
@@ -99,7 +108,7 @@ public static String token = "";
         } catch (IOException e) {  
             System.err.println("Visit " + "config.properties" + " for updating " + "ddd"  
                     + " value error");  
-        }  
+        } 
 	}
 }  
   

@@ -26,7 +26,7 @@ public class Options extends JDialog {
 	 */
 	private final JPanel contentPanel = new JPanel();
 	static JTextField textField;
-	static JTextField textField_1 = null;
+	static JTextField textField_1;
 	static JTextField textField_2;
 	static JPasswordField passwordField;
 	
@@ -69,7 +69,7 @@ public class Options extends JDialog {
 			public void mouseClicked(MouseEvent arg0) //保存设置
 			{
 				Config.java = textField.getText();//JAVA路径
-				Config.username = textField_1.getText();//用户名
+				Config.username = textField_1.getText();
 				Config.memory = textField_2.getText();//最大内存
 				@SuppressWarnings("deprecation")
 				String pwd = passwordField.getText();//先加密。。
@@ -126,6 +126,18 @@ public class Options extends JDialog {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(80, 46, 112, 21);
 		contentPanel.add(passwordField);//密码
+		
+		JButton button = new JButton("\u5173\u4E8E");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) //关于
+			{
+				About dialog = new About();
+				dialog.setVisible(true);
+			}
+		});
+		button.setBounds(10, 187, 93, 23);
+		contentPanel.add(button);
 		
 		Config.ReadConfig();
 

@@ -79,16 +79,12 @@ public class CoreGui extends JFrame {
 		btnNewButton_2.setBounds(424, 325, 167, 84);
 		contentPane.add(btnNewButton_2);
 		
-		JLabel lblGoodtimeLuancherDev = new JLabel("GoodTime Luancher Dev 1209a");
+		JLabel lblGoodtimeLuancherDev = new JLabel("GoodTime Luancher Dev 1221b");
 		lblGoodtimeLuancherDev.setBounds(0, 404, 193, 15);
 		contentPane.add(lblGoodtimeLuancherDev);
 		
 		JLabel lblGoodtiwicpnet = new JLabel("goodti.wicp.net");
 		lblGoodtiwicpnet.setBounds(0, 0, 139, 15);
 		contentPane.add(lblGoodtiwicpnet);
-		
-		JLabel lblJava = new JLabel("by JAVA7");
-		lblJava.setBounds(666, 0, 55, 15);
-		contentPane.add(lblJava);
 	}
 }
