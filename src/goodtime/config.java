@@ -32,18 +32,18 @@ public static String token = "";
 		File cfg = new File("config.properties");
 		{
 			if (cfg.exists()){
-				System.out.println("ÎÄ¼şÒÑ´æÔÚ");
+				System.out.println("\u6587\u4EF6\u5DF2\u5B58\u5728");
 				long l = cfg.length();
 				if (l<101)
 				{
 					Config.WriteConfig();
-					System.out.println("ÓÉÓÚÎÄ¼ş²»ÍêÕû£¬ÒÑÖØĞ´");
+					System.out.println("\u7531\u4E8E\u6587\u4EF6\u4E0D\u5B8C\u6574\uFF0C\u5DF2\u91CD\u5199");
 				}
 			else
 			{
 				CoreGui frame = new CoreGui();
 				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				frame.setVisible(true);//ÉèÖÃ´°ÌåÎªÏÔÊ¾
+				frame.setVisible(true);//è®¾ç½®çª—ä½“ä¸ºæ˜¾ç¤º
 			}
 
 			}
@@ -66,7 +66,7 @@ public static String token = "";
 		try {
 			fis = new FileInputStream("config.properties");
 		} catch (FileNotFoundException e1) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 			e1.printStackTrace();
 		}
 		InputStream ips = new BufferedInputStream(fis);
@@ -74,7 +74,7 @@ public static String token = "";
 		try {
 			props.load(ips);
 		} catch (IOException e) {
-			// TODO ×Ô¶¯Éú³ÉµÄ catch ¿é
+			// TODO è‡ªåŠ¨ç”Ÿæˆçš„ catch å—
 			e.printStackTrace();
 		}
 		String username= props.getProperty("name");
@@ -92,19 +92,19 @@ public static String token = "";
 		Properties prop = new Properties();  
         try {  
             InputStream fis = new FileInputStream("config.properties");  
-            // ´ÓÊäÈëÁ÷ÖĞ¶ÁÈ¡ÊôĞÔÁĞ±í£¨¼üºÍÔªËØ¶Ô£©  
+            // ä»è¾“å…¥æµä¸­è¯»å–å±æ€§åˆ—è¡¨ï¼ˆé”®å’Œå…ƒç´ å¯¹ï¼‰  
             prop.load(fis);  
-            // µ÷ÓÃ Hashtable µÄ·½·¨ put¡£Ê¹ÓÃ getProperty ·½·¨Ìá¹©²¢ĞĞĞÔ¡£  
-            // Ç¿ÖÆÒªÇóÎªÊôĞÔµÄ¼üºÍÖµÊ¹ÓÃ×Ö·û´®¡£·µ»ØÖµÊÇ Hashtable µ÷ÓÃ put µÄ½á¹û¡£  
+            // è°ƒç”¨ Hashtable çš„æ–¹æ³• putã€‚ä½¿ç”¨ getProperty æ–¹æ³•æä¾›å¹¶è¡Œæ€§ã€‚  
+            // å¼ºåˆ¶è¦æ±‚ä¸ºå±æ€§çš„é”®å’Œå€¼ä½¿ç”¨å­—ç¬¦ä¸²ã€‚è¿”å›å€¼æ˜¯ Hashtable è°ƒç”¨ put çš„ç»“æœã€‚  
             OutputStream fos = new FileOutputStream("config.properties");  
             prop.setProperty("name", username);
             prop.setProperty("password",password);
             prop.setProperty("Java-Path",java);
             prop.setProperty("Max-memory",memory);
-         // ÒÔÊÊºÏÊ¹ÓÃ load ·½·¨¼ÓÔØµ½ Properties ±íÖĞµÄ¸ñÊ½£¬  
-            // ½«´Ë Properties ±íÖĞµÄÊôĞÔÁĞ±í£¨¼üºÍÔªËØ¶Ô£©Ğ´ÈëÊä³öÁ÷  
+         // ä»¥é€‚åˆä½¿ç”¨ load æ–¹æ³•åŠ è½½åˆ° Properties è¡¨ä¸­çš„æ ¼å¼ï¼Œ  
+            // å°†æ­¤ Properties è¡¨ä¸­çš„å±æ€§åˆ—è¡¨ï¼ˆé”®å’Œå…ƒç´ å¯¹ï¼‰å†™å…¥è¾“å‡ºæµ  
             prop.store(fos, "GoodTime Launcher Config");  
-            System.out.println("ÎÄ¼şĞÅÏ¢ÒÑĞ´Èë");
+            System.out.println("\u6587\u4EF6\u4FE1\u606F\u5DF2\u5199\u5165");
         } catch (IOException e) {  
             System.err.println("Visit " + "config.properties" + " for updating " + "ddd"  
                     + " value error");  
