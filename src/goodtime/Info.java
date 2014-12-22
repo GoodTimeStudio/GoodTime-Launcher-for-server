@@ -21,18 +21,12 @@ public class Info {
 	
 	public static void ReadJson()
 	{
-		String path="d:/";
+		String path= "./.minecraft/version/";
 		File file=new File(path);
 		File[] tempList = file.listFiles();
-		for (int i = 0; i < tempList.length; i++) 
-		{
-			if (tempList[i].isDirectory()) 
-				{
-				System.out.println(tempList[i]);//获取目录下的文件夹
-				}
+		for (int i = 0; i < tempList.length; i++) {
+		File a = tempList[i];
+		System.out.println(tempList[i]);
 		}
-		
-		File[] js = (tempList);
-		System.out.println("./.minecraft/version/"+js);
 	}
 }
