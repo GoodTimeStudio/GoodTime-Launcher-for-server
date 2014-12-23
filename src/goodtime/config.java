@@ -43,7 +43,7 @@ public static String token = "";
 			{
 				CoreGui frame = new CoreGui();
 				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				frame.setVisible(true);//设置窗体为显示
+				frame.setVisible(true);//设置窗体为显�?
 			}
 
 			}
@@ -66,7 +66,7 @@ public static String token = "";
 		try {
 			fis = new FileInputStream("config.properties");
 		} catch (FileNotFoundException e1) {
-			// TODO 自动生成的 catch 块
+			// TODO 自动生成�? catch �?
 			e1.printStackTrace();
 		}
 		InputStream ips = new BufferedInputStream(fis);
@@ -74,7 +74,7 @@ public static String token = "";
 		try {
 			props.load(ips);
 		} catch (IOException e) {
-			// TODO 自动生成的 catch 块
+			// TODO 自动生成�? catch �?
 			e.printStackTrace();
 		}
 		String username= props.getProperty("name");
@@ -94,15 +94,15 @@ public static String token = "";
             InputStream fis = new FileInputStream("config.properties");  
             // 从输入流中读取属性列表（键和元素对）  
             prop.load(fis);  
-            // 调用 Hashtable 的方法 put。使用 getProperty 方法提供并行性。  
-            // 强制要求为属性的键和值使用字符串。返回值是 Hashtable 调用 put 的结果。  
+            // 调用 Hashtable 的方�? put。使�? getProperty 方法提供并行性�??  
+            // 强制要求为属性的键和值使用字符串。返回�?�是 Hashtable 调用 put 的结果�??  
             OutputStream fos = new FileOutputStream("config.properties");  
             prop.setProperty("name", username);
             prop.setProperty("password",password);
             prop.setProperty("Java-Path",java);
             prop.setProperty("Max-memory",memory);
-         // 以适合使用 load 方法加载到 Properties 表中的格式，  
-            // 将此 Properties 表中的属性列表（键和元素对）写入输出流  
+         // 以�?�合使用 load 方法加载�? Properties 表中的格式，  
+            // 将此 Properties 表中的属性列表（键和元素对）写入输出�?  
             prop.store(fos, "GoodTime Launcher Config");  
             System.out.println("\u6587\u4EF6\u4FE1\u606F\u5DF2\u5199\u5165");
         } catch (IOException e) {  

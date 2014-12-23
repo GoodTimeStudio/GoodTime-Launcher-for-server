@@ -15,6 +15,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+
 
 public class CoreGui extends JFrame {
 	/**
@@ -46,6 +50,7 @@ public class CoreGui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public CoreGui() {
 		setTitle("GoodTime\u542F\u52A8\u5668");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,6 +95,8 @@ public class CoreGui extends JFrame {
 		btnNewButton_2.setBounds(615, 508, 167, 84);
 		contentPane.add(btnNewButton_2);
 		
+		//±³¾°--------------------------------------
+		
 		URL bgtp = this.getClass().getResource("bg.jpg");
 		System.out.println(bgtp);
 		background = new ImageIcon(bgtp);// ±³¾°Í¼Æ¬
@@ -106,5 +113,14 @@ public class CoreGui extends JFrame {
 		this.setResizable(false);
 		this.setVisible(true);
 		
+		//---------------------------------------
+		
+		JComboBox comboBox = new JComboBox();
+		Info.ReadJson();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {Info.id}));
+		comboBox.setBounds(615, 477, 287, 21);
+		contentPane.add(comboBox);
 	}
+	
+
 }
