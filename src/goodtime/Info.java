@@ -3,9 +3,6 @@ package goodtime;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
-import sun.awt.AWTAccessor.SystemTrayAccessor;
-
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -59,7 +56,7 @@ public class Info {
 				rTime = object.get("releaseTime").getAsString();
 				mA = object.get("minecraftArguments").getAsString();
 				mLV = object.get("minimumLauncherVersion").getAsString();
-				ass = object.get("assets").getAsString();
+				//ass = object.get("assets").getAsString();
 				main = object.get("mainClass").getAsString();
 				
 				
@@ -68,11 +65,10 @@ public class Info {
 				System.out.println("releaseTime"+rTime);
 				System.out.println("minecraftArguments="+mA);
 				System.out.println("minimumLauncherVersion="+mLV);
-				System.out.println("assets="+ass);
+				//System.out.println("assets="+ass);
 				System.out.println("mainClass="+main);
-				
-				System.out.println(id);
 				System.out.println("---------------------------------");
+				CoreGui.comboBox.addItem(id);
 				
 			} catch (JsonIOException e) {
 				e.printStackTrace();

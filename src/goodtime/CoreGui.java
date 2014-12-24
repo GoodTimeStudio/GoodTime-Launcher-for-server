@@ -2,7 +2,6 @@ package goodtime;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
@@ -13,10 +12,10 @@ import javax.swing.JLabel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
 import java.net.URL;
 
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 
 
@@ -27,6 +26,9 @@ public class CoreGui extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
+	static int getid = 0; 
+	static String ggetid = "";
+	static JComboBox<Object> comboBox = new JComboBox<Object>();
 	/*
 	 * ±≥æ∞≤‚ ‘
 	 */
@@ -35,7 +37,6 @@ public class CoreGui extends JFrame {
 	
 	 /* 
 	 */
-
 	/**
 	 * Launch the application.
 	 */
@@ -50,7 +51,6 @@ public class CoreGui extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public CoreGui() {
 		setTitle("GoodTime\u542F\u52A8\u5668");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,10 +66,8 @@ public class CoreGui extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				//-------------------
 				try {
-					Options dialog = new Options();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
-				} catch (Exception e) {
+					Options.main(null);
+				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
 			}
@@ -86,10 +84,16 @@ public class CoreGui extends JFrame {
 		JButton btnNewButton_2 = new JButton("\u5F00\u542FGoodTime\u4E4B\u65C5\uFF01");
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
+			//-------------------------------------------
 			public void mouseClicked(MouseEvent arg0) {
 				//∆Ù∂Ø
+				getid = comboBox.getSelectedIndex();
+				ggetid = String.valueOf(getid); 
+				Config.WriteConfig();
 				Launcher.main(null);
+				System.exit(0);
 			}
+			//-------------------------------------------
 		});
 		btnNewButton_2.setFont(new Font("∫⁄ÃÂ", Font.PLAIN, 14));
 		btnNewButton_2.setBounds(615, 508, 167, 84);
@@ -115,11 +119,12 @@ public class CoreGui extends JFrame {
 		
 		//---------------------------------------
 		
-		JComboBox comboBox = new JComboBox();
-		Info.ReadJson();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {Info.id}));
 		comboBox.setBounds(615, 477, 287, 21);
 		contentPane.add(comboBox);
+		Info.ReadJson();
+		Config.ReadConfig();
+		getid = Integer.valueOf(ggetid).intValue();
+		comboBox.setSelectedIndex(getid);
 	}
 	
 
