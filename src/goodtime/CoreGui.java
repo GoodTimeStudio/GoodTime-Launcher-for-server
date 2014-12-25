@@ -92,7 +92,7 @@ public class CoreGui extends JFrame {
 				Object gver = comboBox.getSelectedItem();
 				Info.version = gver.toString();
 				Config.WriteConfig();
-				Info.getJsonPath();
+				Info.main(null);
 				Launcher.main(null);
 				System.exit(0);
 			}

@@ -3,6 +3,8 @@ package goodtime;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+
+import com.google.gson.JsonArray;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -26,17 +28,36 @@ public class Info {
 	public static File file=new File(path);
 	public static String js = "";
 	public static String json = "";
+	public static String LibURL = "";
+	public static JsonParser parser ;
+	public static JsonObject object ;
 	
 	public static void main(String[] args)
 	{
+		parser = new JsonParser();
 		getJsonPath();
 	}
 	
+	public static void getJsonPath()
+	{
+		json = path+version+"/"+version+".json";
+		System.out.println(json);
+		try {
+			object = (JsonObject) parser.parse(new FileReader(json));
+		} catch (JsonIOException e) {
+			e.printStackTrace();
+		} catch (JsonSyntaxException e) {
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		ReadJson();
+	}
+	
+	
 	public static void ReadJson()
 	{
-			JsonParser parser = new JsonParser();
 			try {
-				JsonObject object = (JsonObject) parser.parse(new FileReader(json));
 				id = object.get("id").getAsString();
 				time = object.get("time").getAsString();
 				rTime = object.get("releaseTime").getAsString();
@@ -45,6 +66,16 @@ public class Info {
 				//ass = object.get("assets").getAsString();
 				main = object.get("mainClass").getAsString();
 				
+				JsonArray array = object.get("libraries").getAsJsonArray();
+				for (int i = 0; i < array.size(); i++) 
+				{	
+					JsonObject arrayObject = array.get(i).getAsJsonObject();
+					String a = arrayObject.get("name").getAsString();
+					//String b = arrayObject.get("url").getAsString();
+					System.out.println(a);
+					//System.out.println(b);
+					System.out.println("------------");
+				}
 				
 				System.out.println("id="+id);
 				System.out.println("time="+time);
@@ -60,14 +91,31 @@ public class Info {
 				e.printStackTrace();
 			} catch (JsonSyntaxException e) {
 				e.printStackTrace();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
 			}
-			
+			getAss();
+			getLibURL();
 		
 	}
 		
+	public static void getAss()
+	{
+		ass = object.get("assets").getAsString();
+		System.out.println("ass="+ass);
+	}
+	
+	public static void getLibURL()
+	{
+		LibURL = object.get("url").getAsString();
+		System.out.println("url="+LibURL);
+	}
+	
+	public static void getLauncherVersion()
+	{
 		
+	}
+	
+	//--------------------------------------------------
+	//===================================================
 	public static void getVersion()
 	{
 		String[] dirname = file.list();
@@ -76,16 +124,5 @@ public class Info {
 			CoreGui.comboBox.addItem(dirname[i]);
 		}
 		
-	}
-	
-	public static void getJsonPath()
-	{
-
-		
-		//File[] ddir = file.listFiles();//»ñÈ¡Â·¾¶
-		//String[] dirname = file.list();
-		json = path+version+"/"+version+".json";
-		System.out.println(json);
-		ReadJson();
 	}
 }
