@@ -27,7 +27,7 @@ public class CoreGui extends JFrame {
 	private JPanel contentPane;
 	
 	static int getid = 0; 
-	static String ggetid = "";
+	static String ggetid = "0";
 	static JComboBox<Object> comboBox = new JComboBox<Object>();
 	/*
 	 * ±≥æ∞≤‚ ‘
@@ -89,7 +89,10 @@ public class CoreGui extends JFrame {
 				//∆Ù∂Ø
 				getid = comboBox.getSelectedIndex();
 				ggetid = String.valueOf(getid); 
+				Object gver = comboBox.getSelectedItem();
+				Info.version = gver.toString();
 				Config.WriteConfig();
+				Info.getJsonPath();
 				Launcher.main(null);
 				System.exit(0);
 			}
@@ -121,7 +124,7 @@ public class CoreGui extends JFrame {
 		
 		comboBox.setBounds(615, 477, 287, 21);
 		contentPane.add(comboBox);
-		Info.ReadJson();
+		Info.getVersion();
 		Config.ReadConfig();
 		getid = Integer.valueOf(ggetid).intValue();
 		comboBox.setSelectedIndex(getid);

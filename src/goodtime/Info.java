@@ -22,32 +22,18 @@ public class Info {
 	public static String mLV = "";
 	public static String ass = "";
 	public static String main = "";
+	public static String path = "./.minecraft/version/";
+	public static File file=new File(path);
+	public static String js = "";
+	public static String json = "";
 	
 	public static void main(String[] args)
 	{
-		ReadJson();
+		getJsonPath();
 	}
 	
 	public static void ReadJson()
 	{
-		String path= "./.minecraft/version/";
-		File file=new File(path);
-		File[] ddir = file.listFiles();//获取路径
-		String[] dirname = file.list();//获取目录名
-		
-		for (int i = 0; i < ddir.length; i++ ) 
-		{
-			StringBuffer sb = new StringBuffer();
-			sb. append(ddir[i]);
-			String b = sb.toString();
-			
-			StringBuffer sc = new StringBuffer();
-			sc. append(dirname[i]);
-			String c = sc.toString();
-			
-			String json = b+"\\"+c+".json";	
-
-			//System.out.println(json[i]);
 			JsonParser parser = new JsonParser();
 			try {
 				JsonObject object = (JsonObject) parser.parse(new FileReader(json));
@@ -65,10 +51,10 @@ public class Info {
 				System.out.println("releaseTime"+rTime);
 				System.out.println("minecraftArguments="+mA);
 				System.out.println("minimumLauncherVersion="+mLV);
-				//System.out.println("assets="+ass);
+				System.out.println("assets="+ass);
 				System.out.println("mainClass="+main);
 				System.out.println("---------------------------------");
-				CoreGui.comboBox.addItem(id);
+
 				
 			} catch (JsonIOException e) {
 				e.printStackTrace();
@@ -78,10 +64,28 @@ public class Info {
 				e.printStackTrace();
 			}
 			
-		}
+		
 	}
 		
 		
+	public static void getVersion()
+	{
+		String[] dirname = file.list();
+		for (int i = 0; i < dirname.length; i++) {
+			js = dirname[i].toString();
+			CoreGui.comboBox.addItem(dirname[i]);
+		}
 		
+	}
 	
+	public static void getJsonPath()
+	{
+
+		
+		//File[] ddir = file.listFiles();//获取路径
+		//String[] dirname = file.list();
+		json = path+version+"/"+version+".json";
+		System.out.println(json);
+		ReadJson();
+	}
 }
