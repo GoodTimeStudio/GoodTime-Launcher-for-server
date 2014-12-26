@@ -43,7 +43,7 @@ public static String token = "";
 			{
 				CoreGui frame = new CoreGui();
 				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				frame.setVisible(true);//设置窗体为显�?
+				frame.setVisible(true);
 			}
 
 			}
@@ -66,7 +66,6 @@ public static String token = "";
 		try {
 			fis = new FileInputStream("config.properties");
 		} catch (FileNotFoundException e1) {
-			// TODO 自动生成�? catch �?
 			e1.printStackTrace();
 		}
 		InputStream ips = new BufferedInputStream(fis);
@@ -74,7 +73,6 @@ public static String token = "";
 		try {
 			props.load(ips);
 		} catch (IOException e) {
-			// TODO 自动生成�? catch �?
 			e.printStackTrace();
 		}
 		String username= props.getProperty("name");

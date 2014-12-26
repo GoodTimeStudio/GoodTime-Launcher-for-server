@@ -14,6 +14,9 @@ import com.google.gson.JsonSyntaxException;
 
 public class Info {
 
+	public static String os;
+	public static String jre;
+	public static String jpath;
 	public static String dir = "";
 	public static String lib = "";
 	public static String version = "";
@@ -31,11 +34,13 @@ public class Info {
 	public static String LibURL = "";
 	public static JsonParser parser ;
 	public static JsonObject object ;
+	static int i;
 	
 	public static void main(String[] args)
 	{
-		parser = new JsonParser();
-		getJsonPath();
+		getJavaInfo();
+		//parser = new JsonParser();
+		//getJsonPath();
 	}
 	
 	public static void getJsonPath()
@@ -63,19 +68,27 @@ public class Info {
 				rTime = object.get("releaseTime").getAsString();
 				mA = object.get("minecraftArguments").getAsString();
 				mLV = object.get("minimumLauncherVersion").getAsString();
-				//ass = object.get("assets").getAsString();
 				main = object.get("mainClass").getAsString();
-				
+				try {
+					ass = object.get("assets").getAsString();
+				} catch (Exception e) {
+					System.out.println("异常:键值'assets'不存在");
+				}
 				JsonArray array = object.get("libraries").getAsJsonArray();
-				for (int i = 0; i < array.size(); i++) 
+				for (i = 0; i < array.size(); i++) 
 				{	
 					JsonObject arrayObject = array.get(i).getAsJsonObject();
 					String a = arrayObject.get("name").getAsString();
-					//String b = arrayObject.get("url").getAsString();
-					System.out.println(a);
-					//System.out.println(b);
+					try {
+						LibURL = arrayObject.get("url").getAsString();
+					} catch (Exception e) {
+						System.out.println("异常:键值'url'不存在");
+					}
+					System.out.println("name="+a);
+					System.out.println("url="+LibURL);
 					System.out.println("------------");
 				}
+
 				
 				System.out.println("id="+id);
 				System.out.println("time="+time);
@@ -89,14 +102,16 @@ public class Info {
 				
 			} catch (JsonIOException e) {
 				e.printStackTrace();
+				System.out.println("1");
 			} catch (JsonSyntaxException e) {
 				e.printStackTrace();
+				System.out.println("2");
 			}
-			getAss();
-			getLibURL();
+			
 		
 	}
-		
+	
+	/*
 	public static void getAss()
 	{
 		ass = object.get("assets").getAsString();
@@ -108,14 +123,29 @@ public class Info {
 		LibURL = object.get("url").getAsString();
 		System.out.println("url="+LibURL);
 	}
+	*/
 	
 	public static void getLauncherVersion()
 	{
 		
 	}
 	
+	
+	public static void getSystemInfo()
+	{
+		os = System.getProperty("os.name");
+		System.getProperty("os.arch");
+		System.out.println(os);
+	}
+	
+
+	
+	
 	//--------------------------------------------------
 	//===================================================
+	
+	
+	
 	public static void getVersion()
 	{
 		String[] dirname = file.list();
@@ -124,5 +154,13 @@ public class Info {
 			CoreGui.comboBox.addItem(dirname[i]);
 		}
 		
+	}
+	
+	public static void getJavaInfo()
+	{
+		jre = System.getProperty("sun.arch.data.model");
+		System.out.println(jre);
+		String java = System.getProperty("java.home");
+		jpath = java+"\\javaw.exe";
 	}
 }

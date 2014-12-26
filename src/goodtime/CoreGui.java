@@ -17,6 +17,10 @@ import java.net.URL;
 
 import javax.swing.JComboBox;
 
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+import java.awt.Color;
+
 
 
 public class CoreGui extends JFrame {
@@ -52,7 +56,7 @@ public class CoreGui extends JFrame {
 	 * Create the frame.
 	 */
 	public CoreGui() {
-		setTitle("GoodTime\u542F\u52A8\u5668");
+		setTitle("GoodTime-Launcher Dev 1226a");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 928, 640);
 		contentPane = new JPanel();
@@ -60,7 +64,8 @@ public class CoreGui extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("\u8BBE\u7F6E");
+		JButton btnNewButton = new JButton("\u8BBE\u7F6E&\u66F4\u591A");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -77,24 +82,34 @@ public class CoreGui extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("\u79BB\u7EBF\u6E38\u620F");
+		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1.setFont(new Font("ºÚÌå", Font.PLAIN, 14));
 		btnNewButton_1.setBounds(792, 508, 110, 37);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("\u5F00\u542FGoodTime\u4E4B\u65C5\uFF01");
+		btnNewButton_2.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
 			//-------------------------------------------
 			public void mouseClicked(MouseEvent arg0) {
 				//Æô¶¯
-				getid = comboBox.getSelectedIndex();
-				ggetid = String.valueOf(getid); 
-				Object gver = comboBox.getSelectedItem();
-				Info.version = gver.toString();
-				Config.WriteConfig();
-				Info.main(null);
-				Launcher.main(null);
-				System.exit(0);
+				try 
+				{
+					getid = comboBox.getSelectedIndex();
+					ggetid = String.valueOf(getid); 
+					Object gver = comboBox.getSelectedItem();
+					Info.version = gver.toString();
+					Config.WriteConfig();
+					Info.main(null);
+					Launcher.main(null);
+					System.exit(0);
+				} 
+				catch (JsonIOException e) {
+					e.printStackTrace();
+				} catch (JsonSyntaxException e) {
+					e.printStackTrace();
+				}
 			}
 			//-------------------------------------------
 		});
@@ -119,6 +134,7 @@ public class CoreGui extends JFrame {
 		this.setSize(background.getIconWidth(), background.getIconHeight());
 		this.setResizable(false);
 		this.setVisible(true);
+		comboBox.setBackground(Color.LIGHT_GRAY);
 		
 		//---------------------------------------
 		
