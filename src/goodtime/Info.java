@@ -27,7 +27,7 @@ public class Info {
 	public static String mLV = "";
 	public static String ass = "";
 	public static String main = "";
-	public static String path = "./.minecraft/version/";
+	public static String path = "./.minecraft/versions/";
 	public static File file=new File(path);
 	public static String js = "";
 	public static String json = "";
@@ -38,9 +38,8 @@ public class Info {
 	
 	public static void main(String[] args)
 	{
-		getJavaInfo();
-		//parser = new JsonParser();
-		//getJsonPath();
+		parser = new JsonParser();
+		getJsonPath();
 	}
 	
 	public static void getJsonPath()
@@ -151,7 +150,8 @@ public class Info {
 		String[] dirname = file.list();
 		for (int i = 0; i < dirname.length; i++) {
 			js = dirname[i].toString();
-			CoreGui.comboBox.addItem(dirname[i]);
+			System.out.println(js);
+			CoreGui.comboBox.addItem(js);
 		}
 		
 	}
