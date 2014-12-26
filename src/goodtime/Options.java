@@ -1,9 +1,6 @@
 package goodtime;
 
 import java.awt.BorderLayout;
-
-import javafx.stage.FileChooser;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
