@@ -12,3 +12,5 @@ Minecraft GoodTime Launcher
   Genuine Validation
   Download forge
   Automatic Update
+
+  :cn:
