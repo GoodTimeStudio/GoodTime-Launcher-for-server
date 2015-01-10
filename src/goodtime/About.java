@@ -3,6 +3,7 @@ package goodtime;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import java.awt.Color;
+import javax.swing.JButton;
 
 public class About extends JDialog {
 
@@ -60,5 +61,13 @@ public class About extends JDialog {
 		JLabel lblQq = new JLabel("QQ\u7FA4:328994741");
 		lblQq.setBounds(10, 132, 138, 15);
 		getContentPane().add(lblQq);
+		
+		JButton button = new JButton("\u6350\u52A9");
+		button.setBounds(316, 56, 93, 23);
+		getContentPane().add(button);
+		
+		JButton btnNewButton = new JButton("\u52A0\u5165QQ\u7FA4\r\n");
+		btnNewButton.setBounds(316, 103, 93, 23);
+		getContentPane().add(btnNewButton);
 	}
 }

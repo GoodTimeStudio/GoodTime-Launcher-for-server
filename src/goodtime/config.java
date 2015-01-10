@@ -75,10 +75,10 @@ public static String token = "";
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		String username= props.getProperty("name");
-		String password= props.getProperty("password");
-		String memory = props.getProperty("Max-memory");
-		String java = props.getProperty("Java-Path");
+		username= props.getProperty("name");
+		password= props.getProperty("password");
+		memory = props.getProperty("Max-memory");
+		java = props.getProperty("Java-Path");
 		CoreGui.ggetid = props.getProperty("version-id");
 		Options.textField.setText(java);
 		Options.textField_1.setText(username);

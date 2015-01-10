@@ -3,12 +3,17 @@ package goodtime;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
 
 
 
@@ -17,6 +22,7 @@ public class Info {
 	public static String os;
 	public static String jre;
 	public static String jpath;
+	public static String library;
 	public static String dir = "";
 	public static String lib = "";
 	public static String version = "";
@@ -27,7 +33,7 @@ public class Info {
 	public static String mLV = "";
 	public static String ass = "";
 	public static String main = "";
-	public static String path = "./.minecraft/versions/";
+	public static String path = ".\\.minecraft\\versions\\";
 	public static File file=new File(path);
 	public static String js = "";
 	public static String json = "";
@@ -35,6 +41,8 @@ public class Info {
 	public static JsonParser parser ;
 	public static JsonObject object ;
 	static int i;
+	public static String libp = "";
+	public static String verp;
 	
 	public static void main(String[] args)
 	{
@@ -73,22 +81,10 @@ public class Info {
 				} catch (Exception e) {
 					System.out.println("异常:键值'assets'不存在");
 				}
-				JsonArray array = object.get("libraries").getAsJsonArray();
-				for (i = 0; i < array.size(); i++) 
-				{	
-					JsonObject arrayObject = array.get(i).getAsJsonObject();
-					String a = arrayObject.get("name").getAsString();
-					try {
-						LibURL = arrayObject.get("url").getAsString();
-					} catch (Exception e) {
-						System.out.println("异常:键值'url'不存在");
-					}
-					System.out.println("name="+a);
-					System.out.println("url="+LibURL);
-					System.out.println("------------");
-				}
-
-				
+	
+				//System.out.println("name="+lib);
+				//System.out.println("url="+LibURL);
+				//System.out.println("------------");
 				System.out.println("id="+id);
 				System.out.println("time="+time);
 				System.out.println("releaseTime"+rTime);
@@ -143,7 +139,33 @@ public class Info {
 	//--------------------------------------------------
 	//===================================================
 	
-	
+	public static Object getLib()
+	{
+		json = path+version+"/"+version+".json";
+		JsonArray array = object.get("libraries").getAsJsonArray();
+		for (int a = 0; a < array.size(); a++) 
+		{	
+			JsonObject arrayObject = array.get(a).getAsJsonObject();
+			lib = arrayObject.get("name").getAsString();
+
+			/*try {
+				LibURL = arrayObject.get("url").getAsString();
+			} catch (Exception e) {
+				System.out.println("异常:键值'url'不存在");
+			}*/
+			String bs = lib.substring(0 , lib.lastIndexOf(":"));
+			String t = bs.replace(".", "\\");
+			String f = t.replace(":", "\\");
+			String es = lib.substring(lib.lastIndexOf(":")+1 );
+			String u = f+"\\"+es+"\\";
+			String z = lib.substring(lib.indexOf(":")+1);
+			String l = "\""+".\\.minecraft\\libraries\\"+u+z.replace(":", "-")+".jar" ;
+			libp = libp+l+"\""+";";
+
+
+		}
+		return array;
+	}
 	
 	public static void getVersion()
 	{
@@ -153,6 +175,16 @@ public class Info {
 			System.out.println(js);
 			CoreGui.comboBox.addItem(js);
 		}
+		
+	}
+	
+	public static void getverPath()
+	{
+		Object gver = CoreGui.comboBox.getSelectedItem();
+		verp = path+gver+"\\";
+	}
+	
+	public void LibPath(){
 		
 	}
 	
