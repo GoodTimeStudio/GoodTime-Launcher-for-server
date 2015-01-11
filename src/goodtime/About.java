@@ -33,7 +33,7 @@ public class About extends JDialog {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		
-		JLabel lblGoodtimeLauncherDev = new JLabel("GoodTime Launcher Dev 1226a");
+		JLabel lblGoodtimeLauncherDev = new JLabel("GoodTime Launcher Dev 1501b");
 		lblGoodtimeLauncherDev.setBounds(10, 10, 249, 15);
 		getContentPane().add(lblGoodtimeLauncherDev);
 		

@@ -1,6 +1,5 @@
 package goodtime;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -8,28 +7,16 @@ import javax.swing.JButton;
 
 import java.awt.Font;
 
-import javax.swing.JLabel;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
-
 import javax.swing.JComboBox;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
 import java.awt.Color;
-import java.awt.SystemColor;
-
-import javax.swing.UIManager;
-import javax.swing.SwingConstants;
-import javax.swing.JInternalFrame;
-import javax.swing.JToolBar;
-import javax.swing.JTree;
-import javax.swing.JMenuBar;
 import javax.swing.JTabbedPane;
 import javax.swing.JEditorPane;
 
@@ -48,8 +35,8 @@ public class CoreGui extends JFrame {
 	/*
 	 * ±≥æ∞≤‚ ‘
 	 */
-	private JPanel imagePanel;
-	private ImageIcon background;
+	//private JPanel imagePanel;
+	//private ImageIcon background;
 	
 	 /* 
 	 */
@@ -95,7 +82,11 @@ public class CoreGui extends JFrame {
 					Info.version = gver.toString();
 					Config.WriteConfig();
 					Info.main(null);
-					Launcher.main(null);
+					try {
+						Launcher.main(null);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 					System.exit(0);
 				} 
 				catch (JsonIOException e) {
