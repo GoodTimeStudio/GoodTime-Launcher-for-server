@@ -14,9 +14,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 
-import javax.swing.JPasswordField;
-
 import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JCheckBox;
 
 
 public class Options extends JDialog {
@@ -30,9 +30,7 @@ public class Options extends JDialog {
 	 */
 	private final JPanel contentPanel = new JPanel();
 	static JTextField textField;
-	static JTextField textField_1;
 	static JTextField textField_2;
-	static JPasswordField passwordField;
 	
 	/**
 	 * Launch the application.
@@ -54,7 +52,7 @@ public class Options extends JDialog {
 	 */
 
 	public Options() {
-		setTitle("\u8BBE\u7F6E");
+		setTitle("\u914D\u7F6E\u8BBE\u7F6E");
 		setBounds(100, 100, 670, 400);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,18 +66,18 @@ public class Options extends JDialog {
 		
 		
 		JButton btnNewButton = new JButton("\u4FDD\u5B58\u8BBE\u7F6E");
+		btnNewButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addMouseListener(new MouseAdapter() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void mouseClicked(MouseEvent arg0) //±£´æÉèÖÃ
 			{
 				Config.java = textField.getText();//JAVAÂ·¾¶
-				Config.username = textField_1.getText();
+				//Config.username = textField_1.getText();
 				Config.memory = textField_2.getText();//×î´óÄÚ´æ
-				String pwd = passwordField.getText();//ÏÈ¼ÓÃÜ¡£¡£
+				//String pwd = passwordField.getText();//ÏÈ¼ÓÃÜ¡£¡£
 				//..
-				Config.password = pwd;
+				//Config.password = pwd;
 				Config.WriteConfig();
 				opt.setEnabled(false);
 				opt.setVisible(false);
@@ -90,37 +88,34 @@ public class Options extends JDialog {
 		contentPanel.add(btnNewButton);
 		
 		JLabel lblJava = new JLabel("JAVA \u8DEF\u5F84");
-		lblJava.setBounds(10, 125, 73, 15);
+		lblJava.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		lblJava.setBounds(10, 276, 73, 15);
 		contentPanel.add(lblJava);
 		
 		textField = new JTextField();
-		textField.setBounds(79, 122, 234, 21);
+		textField.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		textField.setBounds(79, 270, 234, 21);
 		contentPanel.add(textField);//JAVAÂ·¾¶
 		textField.setColumns(10);
 		
-		JLabel label_1 = new JLabel("\u6E38\u620F\u540D\u5B57");
-		label_1.setBounds(10, 10, 54, 15);
-		contentPanel.add(label_1);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(79, 7, 112, 21);
-		contentPanel.add(textField_1);
-		textField_1.setColumns(10);//Ãû×Ö
-		
 		JLabel label_2 = new JLabel("\u6700\u5927\u5185\u5B58");
-		label_2.setBounds(10, 87, 54, 15);
+		label_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		label_2.setBounds(10, 251, 54, 15);
 		contentPanel.add(label_2);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(79, 84, 66, 21);
+		textField_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		textField_2.setBounds(79, 245, 66, 21);
 		contentPanel.add(textField_2);
 		textField_2.setColumns(10);//×î´óÄÚ´æ
 		
 		JLabel lblM = new JLabel("MB");
-		lblM.setBounds(147, 90, 23, 15);
+		lblM.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		lblM.setBounds(148, 248, 23, 15);
 		contentPanel.add(lblM);
 		
 		JButton btnjava = new JButton("\u9009\u62E9JAVA");
+		btnjava.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		btnjava.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {//Ñ¡Ôñjava
@@ -136,18 +131,11 @@ public class Options extends JDialog {
 			}
 		});
 		btnjava.setBackground(Color.LIGHT_GRAY);
-		btnjava.setBounds(77, 150, 93, 23);
+		btnjava.setBounds(317, 269, 93, 23);
 		contentPanel.add(btnjava);
 		
-		JLabel label_3 = new JLabel("\u5BC6\u7801");
-		label_3.setBounds(10, 49, 54, 15);
-		contentPanel.add(label_3);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(80, 46, 112, 21);
-		contentPanel.add(passwordField);//ÃÜÂë
-		
 		JButton button = new JButton("\u5173\u4E8E");
+		button.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		button.setBackground(Color.LIGHT_GRAY);
 		button.addMouseListener(new MouseAdapter() {
 			@Override
@@ -161,6 +149,7 @@ public class Options extends JDialog {
 		contentPanel.add(button);
 		
 		JButton btnNewButton_1 = new JButton("\u81EA\u52A8\u8BBE\u7F6E");
+		btnNewButton_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -176,10 +165,11 @@ public class Options extends JDialog {
 				}
 			}
 		});
-		btnNewButton_1.setBounds(170, 83, 93, 23);
+		btnNewButton_1.setBounds(170, 244, 93, 23);
 		contentPanel.add(btnNewButton_1);
 		
 		JButton button_1 = new JButton("\u81EA\u52A8\u9009\u62E9");
+		button_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		button_1.setBackground(Color.LIGHT_GRAY);
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
@@ -188,10 +178,11 @@ public class Options extends JDialog {
 				textField.setText(Info.jpath);
 			}
 		});
-		button_1.setBounds(170, 150, 93, 23);
+		button_1.setBounds(410, 269, 93, 23);
 		contentPanel.add(button_1);
 		
 		JButton btnNewButton_2 = new JButton("\u4E0B\u8F7D\u6E38\u620F");
+		btnNewButton_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		btnNewButton_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -201,6 +192,16 @@ public class Options extends JDialog {
 		btnNewButton_2.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_2.setBounds(453, 301, 88, 51);
 		contentPanel.add(btnNewButton_2);
+		
+		JLabel label_1 = new JLabel("\u914D\u7F6E\u4FE1\u606F");
+		label_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		label_1.setBounds(10, 10, 54, 15);
+		contentPanel.add(label_1);
+		
+		JLabel label_3 = new JLabel("\u914D\u7F6E\u540D\u79F0");
+		label_3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		label_3.setBounds(29, 33, 54, 15);
+		contentPanel.add(label_3);
 		
 		Config.ReadConfig();
 

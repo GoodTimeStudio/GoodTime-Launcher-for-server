@@ -31,7 +31,8 @@ public static String token = "";
 	{
 		File cfg = new File("config.properties");
 		{
-			if (cfg.exists()){
+			if (cfg.exists())
+			{
 				System.out.println("\u6587\u4EF6\u5DF2\u5B58\u5728");
 				long l = cfg.length();
 				if (l<101)
@@ -39,15 +40,16 @@ public static String token = "";
 					Config.WriteConfig();
 					System.out.println("\u7531\u4E8E\u6587\u4EF6\u4E0D\u5B8C\u6574\uFF0C\u5DF2\u91CD\u5199");
 				}
-			else
-			{
-				CoreGui frame = new CoreGui();
-				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				frame.setVisible(true);
-			}
+				else
+				{
+					CoreGui frame = new CoreGui();
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					frame.setVisible(true);
+				}
 
 			}
-			else {
+			else 
+			{
 				First.main(null);
 				try {
 					cfg.createNewFile();
@@ -81,9 +83,9 @@ public static String token = "";
 		java = props.getProperty("Java-Path");
 		CoreGui.ggetid = props.getProperty("version-id");
 		Options.textField.setText(java);
-		Options.textField_1.setText(username);
+		//Options.textField_1.setText(username);
 		Options.textField_2.setText(memory);
-		Options.passwordField.setText(password);
+		//Options.passwordField.setText(password);
 	}
 	
 	public static void WriteConfig()

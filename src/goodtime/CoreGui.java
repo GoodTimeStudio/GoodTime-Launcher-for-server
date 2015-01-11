@@ -6,19 +6,24 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 
 import java.awt.Font;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Calendar;
+
 import javax.swing.JComboBox;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
 import java.awt.Color;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JEditorPane;
+import javax.swing.JLabel;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 
 
@@ -32,6 +37,8 @@ public class CoreGui extends JFrame {
 	static int getid = 0; 
 	static String ggetid = "0";
 	static JComboBox<Object> comboBox = new JComboBox<Object>();
+	static JLabel lblNewLabel = new JLabel();
+	static JLabel label_1;
 	/*
 	 * 背景测试
 	 */
@@ -65,7 +72,7 @@ public class CoreGui extends JFrame {
 		
 	
 		
-		JButton btnNewButton_2 = new JButton("\u5F00\u542FGoodTime\u4E4B\u65C5\uFF01");
+		JButton btnNewButton_2 = new JButton("\u79BB\u7EBF\u6E38\u620F");
 		btnNewButton_2.setBounds(379, 508, 167, 84);
 		contentPane.add(btnNewButton_2);
 		btnNewButton_2.setBackground(Color.LIGHT_GRAY);
@@ -97,16 +104,10 @@ public class CoreGui extends JFrame {
 			}
 			//-------------------------------------------
 		});
-		btnNewButton_2.setFont(new Font("黑体", Font.PLAIN, 14));
-		
-		JButton btnNewButton_1 = new JButton("\u79BB\u7EBF\u6E38\u620F");
-		btnNewButton_1.setBounds(802, 518, 110, 37);
-		contentPane.add(btnNewButton_1);
-		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
-		btnNewButton_1.setFont(new Font("黑体", Font.PLAIN, 14));
+		btnNewButton_2.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		
 		JButton btnNewButton = new JButton("\u8BBE\u7F6E&\u66F4\u591A");
-		btnNewButton.setBounds(802, 565, 110, 37);
+		btnNewButton.setBounds(10, 555, 110, 37);
 		contentPane.add(btnNewButton);
 		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -145,8 +146,13 @@ public class CoreGui extends JFrame {
 		Info.getVersion();
 		Config.ReadConfig();
 		getid = Integer.valueOf(ggetid).intValue();
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				label_1.setText("即将开始"+comboBox.getSelectedItem());
+			}
+		});
 		
-		comboBox.setBounds(10, 518, 287, 21);
+		comboBox.setBounds(10, 508, 230, 21);
 		contentPane.add(comboBox);
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setSelectedIndex(getid);
@@ -161,9 +167,59 @@ public class CoreGui extends JFrame {
 		tabbedPane.addTab("更新日志", null, editorPane, null);
 		tabbedPane.setVisible(true);
 		try {
-			editorPane.setPage("http://ip138.com");
+			editorPane.setPage("http://ip138.com");//更新日志网址
+
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		
+		lblNewLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		lblNewLabel.setBounds(556, 508, 57, 15);
+		contentPane.add(lblNewLabel);
+		
+		JLabel label = new JLabel("\u5C0A\u656C\u7684\u6E38\u5BA2");
+		label.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		label.setBounds(623, 508, 138, 15);
+		contentPane.add(label);
+		
+		JButton btnNewButton_1 = new JButton("\u8D26\u53F7\u7BA1\u7406");
+		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
+		btnNewButton_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		btnNewButton_1.setBounds(809, 555, 93, 37);
+		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel_1 = new JLabel("\u8BF7\u5148\u767B\u5F55\uFF0C\u6216\u79BB\u7EBF\u6E38\u620F");
+		lblNewLabel_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		lblNewLabel_1.setBounds(556, 528, 138, 15);
+		contentPane.add(lblNewLabel_1);
+		
+		label_1 = new JLabel("\u5373\u5C06\u5F00\u59CB\u6E38\u620F");
+		label_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		label_1.setBounds(556, 548, 205, 15);
+		contentPane.add(label_1);
+		label_1.setText("即将开始"+comboBox.getSelectedItem());
+		getTime();
+	}
+	
+	public static void getTime()
+	{
+		Calendar c = Calendar.getInstance();
+		int hour = c.get(Calendar.HOUR_OF_DAY); 
+		if (hour < 11)
+		{
+			lblNewLabel.setText("早上好!");
+		}
+		else if (hour < 13)
+		{
+			lblNewLabel.setText("中午好！");
+		}
+		else if (hour < 18)
+		{
+			lblNewLabel.setText("下午好！");
+		}
+		else 
+		{
+			lblNewLabel.setText("晚上好！");
 		}
 	}
 }
