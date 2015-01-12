@@ -183,6 +183,12 @@ public class CoreGui extends JFrame {
 		contentPane.add(label);
 		
 		JButton btnNewButton_1 = new JButton("\u8D26\u53F7\u7BA1\u7406");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Login.main(null);
+			}
+		});
 		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
 		btnNewButton_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		btnNewButton_1.setBounds(809, 555, 93, 37);
