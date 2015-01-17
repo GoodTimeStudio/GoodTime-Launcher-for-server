@@ -12,6 +12,10 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
+import java.awt.Color;
 
 public class Login extends JDialog {
 
@@ -53,8 +57,9 @@ public class Login extends JDialog {
 		contentPanel.add(label);
 		
 		JComboBox<Object> comboBox = new JComboBox<Object>();
+		comboBox.setBackground(Color.LIGHT_GRAY);
 		comboBox.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
-		comboBox.setBounds(74, 10, 134, 21);
+		comboBox.setBounds(74, 10, 249, 21);
 		contentPanel.add(comboBox);
 		comboBox.addItem("µÁ°æµÇÂ¼");
 		comboBox.addItem("GoodTime·þÎñÆ÷µÇÂ¼");
@@ -66,7 +71,7 @@ public class Login extends JDialog {
 		contentPanel.add(label_1);
 		
 		textField = new JTextField();
-		textField.setBounds(90, 57, 118, 21);
+		textField.setBounds(90, 60, 118, 21);
 		contentPanel.add(textField);
 		textField.setColumns(10);
 		
@@ -80,8 +85,26 @@ public class Login extends JDialog {
 		contentPanel.add(passwordField);
 		
 		JButton btnNewButton = new JButton("\u767B\u5F55");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
 		btnNewButton.setBounds(230, 60, 93, 49);
 		contentPanel.add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("\u76D7\u7248\u767B\u5F55\u65E0\u6CD5\u8FDB\u5165GoodTime\u670D\u52A1\u5668");
+		lblNewLabel_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		lblNewLabel_1.setBounds(10, 204, 414, 15);
+		contentPanel.add(lblNewLabel_1);
+		
+		JButton btnNewButton_1 = new JButton("\u6CE8\u518C\u8D26\u53F7");
+		btnNewButton_1.setBackground(Color.LIGHT_GRAY);
+		btnNewButton_1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		btnNewButton_1.setBounds(10, 229, 118, 23);
+		contentPanel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("\u7ED1\u5B9A\u6B63\u7248\u8D26\u53F7");
+		btnNewButton_2.setBackground(Color.LIGHT_GRAY);
+		btnNewButton_2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 12));
+		btnNewButton_2.setBounds(145, 229, 118, 23);
+		contentPanel.add(btnNewButton_2);
 	}
 }

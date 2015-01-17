@@ -7,7 +7,7 @@ import java.io.IOException;
 public class Launcher {
 	public static void main(String[] args)
 	{
-		Config.ReadConfig();
+		ConfigJson.load();
 		Info.getverPath();
 		Info.getLib();
 		Info.ReadJson();
@@ -19,7 +19,7 @@ public class Launcher {
 		String lb = Info.verp+"Natives";
 		String classpath = Info.verp+Info.version+".jar";
 		System.out.println("l="+Info.lib);
-		String one = Info.mA.replace("${auth_player_name}", Config.username);
+		String one = Info.mA.replace("${auth_player_name}", ConfigJson.username);
 		String two = one.replace("${version_name}", Info.version);
 		String three = two.replace("${game_directory}", ".\\.minecraft");
 		String four = three.replace("${assets_root}", ".\\.minecraft/assets");
@@ -28,7 +28,7 @@ public class Launcher {
 		String seven = six.replace("${auth_access_token}", "auth_access_token"); 
 		String eight = seven.replace("${user_properties}", "{}");
 		String ma = eight.replace("${user_type}", "legacy");
-		String cmd = "java -Xmx"+Config.memory+"M "+"-Djava.library.path="+lb+" -classpath "+Info.libp+"\""+classpath+"\""+" "+Info.main+" "+ma ;
+		String cmd = "java -Xmx"+ConfigJson.memory+"M "+"-Djava.library.path="+lb+" -classpath "+Info.libp+"\""+classpath+"\""+" "+Info.main+" "+ma ;
 		System.out.println(cmd);
 		System.out.println("java="+"");
 		try {

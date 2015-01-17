@@ -1,4 +1,4 @@
-package goodtime;
+/*package goodtime;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -15,16 +15,13 @@ import javax.swing.JFrame;
 public class Config
 {
 
-public static String username = "";
-public static String password = "";
-public static String java = "";	
-public static String memory = "";
-public static String uuid = "";
+public static String ConfigP = "launcher_profiles.json";
+
 public static String token = "";
 	
 	public static void main(String[] args)
 	{
-		
+		ReadConfig();
 	}
 	
 	public static void ConfigCheck()
@@ -39,6 +36,9 @@ public static String token = "";
 				{
 					Config.WriteConfig();
 					System.out.println("\u7531\u4E8E\u6587\u4EF6\u4E0D\u5B8C\u6574\uFF0C\u5DF2\u91CD\u5199");
+					CoreGui frame = new CoreGui();
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					frame.setVisible(true);
 				}
 				else
 				{
@@ -63,7 +63,8 @@ public static String token = "";
 	}
 	
 	public static void ReadConfig()
-	{
+	{		
+		
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream("config.properties");
@@ -81,6 +82,7 @@ public static String token = "";
 		password= props.getProperty("password");
 		memory = props.getProperty("Max-memory");
 		java = props.getProperty("Java-Path");
+		System.out.println(props.getProperty("pname"));
 		CoreGui.ggetid = props.getProperty("version-id");
 		Options.textField.setText(java);
 		//Options.textField_1.setText(username);
@@ -105,7 +107,7 @@ public static String token = "";
         } catch (IOException e) {  
             System.err.println("Visit " + "config.properties" + " for updating " + "ddd"  
                     + " value error");  
-        } 
+        }
 	}
 }  
-  
+ */ 

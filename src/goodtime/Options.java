@@ -33,9 +33,11 @@ public class Options extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	static JTextField textField;
 	static JTextField textField_2;
-	private JTextField textField_1;
+	static JTextField textField_1;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	static JComboBox<Object> comboBox_1;
+	static JComboBox<Object> comboBox;
 	
 	/**
 	 * Launch the application.
@@ -57,7 +59,7 @@ public class Options extends JDialog {
 	 */
 
 	public Options() {
-		setTitle("\u914D\u7F6E\u8BBE\u7F6E");
+		setTitle("\u7F16\u8F91\u914D\u7F6E");
 		setBounds(100, 100, 670, 400);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,13 +79,18 @@ public class Options extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent arg0) //保存设置
 			{
-				Config.java = textField.getText();//JAVA路径
+				ConfigJson.java = textField.getText();//JAVA路径
+				ConfigJson.profiles = textField_1.getText();//配置
+				Info.gameDir = textField_2.getText();//游戏目录
 				//Config.username = textField_1.getText();
-				Config.memory = textField_2.getText();//最大内存
+				ConfigJson.memory = textField_2.getText();//最大内存
+				ConfigJson.LVO = (String) comboBox_1.getSelectedItem();//启动器状态
+				Info.version = (String) comboBox.getSelectedItem();
+				ConfigJson.javaArgs = textField_4.getText();
 				//String pwd = passwordField.getText();//先加密。。
 				//..
 				//Config.password = pwd;
-				Config.WriteConfig();
+				ConfigJson.save();
 				opt.setEnabled(false);
 				opt.setVisible(false);
 				opt.dispose();
@@ -199,6 +206,7 @@ public class Options extends JDialog {
 		contentPanel.add(label_3);
 		
 		textField_1 = new JTextField();
+		textField_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		textField_1.setBounds(195, 33, 183, 21);
 		contentPanel.add(textField_1);
 		textField_1.setColumns(10);
@@ -214,6 +222,7 @@ public class Options extends JDialog {
 		contentPanel.add(chckbxNewCheckBox_1);
 		
 		textField_3 = new JTextField();
+		textField_3.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		textField_3.setBounds(195, 63, 308, 21);
 		contentPanel.add(textField_3);
 		textField_3.setColumns(10);
@@ -228,7 +237,7 @@ public class Options extends JDialog {
 		label_4.setBounds(29, 153, 150, 15);
 		contentPanel.add(label_4);
 		
-		JComboBox<?> comboBox = new JComboBox<Object>();
+		comboBox = new JComboBox<Object>();
 		comboBox.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		comboBox.setBounds(195, 153, 308, 21);
 		contentPanel.add(comboBox);
@@ -238,7 +247,8 @@ public class Options extends JDialog {
 		lblNewLabel.setBounds(10, 213, 73, 15);
 		contentPanel.add(lblNewLabel);
 		
-		JComboBox<?> comboBox_1 = new JComboBox<Object>();
+		comboBox_1 = new JComboBox<Object>();
+		comboBox_1.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		comboBox_1.setBounds(195, 93, 308, 21);
 		contentPanel.add(comboBox_1);
 		
@@ -253,11 +263,20 @@ public class Options extends JDialog {
 		contentPanel.add(chckbxNewCheckBox_2);
 		
 		textField_4 = new JTextField();
+		textField_4.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		textField_4.setBounds(195, 273, 308, 21);
 		contentPanel.add(textField_4);
 		textField_4.setColumns(10);
 		
-		Config.ReadConfig();
-
+		textField.setEditable(false);
+		textField_3.setEditable(false);
+		textField_4.setEditable(false);
+		comboBox_1.setEnabled(false);
+		comboBox_1.addItem("启动后隐藏启动器");
+		comboBox_1.addItem("启动后保持启动器开启");
+		comboBox_1.addItem("启动后关闭启动器");
+		
+		//ConfigJson.load();
+		Info.getVersion();
 	}
 }

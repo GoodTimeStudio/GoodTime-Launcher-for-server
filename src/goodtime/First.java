@@ -73,7 +73,7 @@ public class First extends JDialog {
 			{
 				String username = textField.getText();
 				String password = textField_1.getText();
-				Config.WriteConfig();
+				ConfigJson.save();
 				dialog.dispose();
 				CoreGui frame = new CoreGui();
 				frame.setVisible(true);

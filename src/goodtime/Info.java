@@ -37,6 +37,7 @@ public class Info {
 	static int i;
 	public static String libp = "";
 	public static String verp;
+	public static String gameDir;
 	
 	public static void main(String[] args)
 	{
@@ -166,8 +167,9 @@ public class Info {
 		String[] dirname = file.list();
 		for (int i = 0; i < dirname.length; i++) {
 			js = dirname[i].toString();
-			System.out.println(js);
-			CoreGui.comboBox.addItem(js);
+			Options.comboBox.addItem(js);
+			//System.out.println(js);
+			//CoreGui.comboBox.addItem(js);
 		}
 		
 	}

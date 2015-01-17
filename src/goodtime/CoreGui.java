@@ -19,11 +19,14 @@ import com.google.gson.JsonSyntaxException;
 
 import java.awt.Color;
 
+import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.ScrollPane;
 
 
 
@@ -54,7 +57,7 @@ public class CoreGui extends JFrame {
 
 	public static void main(String[] args) 
 	{		
-		Config.ConfigCheck();			
+		ConfigJson.Check();			
 	}
 
 
@@ -62,7 +65,7 @@ public class CoreGui extends JFrame {
 	 * Create the frame.
 	 */
 	public CoreGui() {
-		setTitle("GoodTime-Launcher Dev 1501a");
+		setTitle("GoodTime-Launcher Dev 1501c");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 928, 640);
 		contentPane = new JPanel();
@@ -87,7 +90,7 @@ public class CoreGui extends JFrame {
 					ggetid = String.valueOf(getid); 
 					Object gver = comboBox.getSelectedItem();
 					Info.version = gver.toString();
-					Config.WriteConfig();
+					ConfigJson.save();
 					Info.main(null);
 					try {
 						Launcher.main(null);
@@ -106,8 +109,8 @@ public class CoreGui extends JFrame {
 		});
 		btnNewButton_2.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		
-		JButton btnNewButton = new JButton("\u8BBE\u7F6E&\u66F4\u591A");
-		btnNewButton.setBounds(10, 555, 110, 37);
+		JButton btnNewButton = new JButton("\u7BA1\u7406\u914D\u7F6E");
+		btnNewButton.setBounds(10, 571, 110, 21);
 		contentPane.add(btnNewButton);
 		btnNewButton.setBackground(Color.LIGHT_GRAY);
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -116,6 +119,7 @@ public class CoreGui extends JFrame {
 				//-------------------
 				try {
 					Options.main(null);
+					Options.textField_1.setText((String) comboBox.getSelectedItem());
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -143,9 +147,9 @@ public class CoreGui extends JFrame {
 		
 		
 		//=============================*/
-		Info.getVersion();
-		Config.ReadConfig();
-		getid = Integer.valueOf(ggetid).intValue();
+		//Info.getVersion();
+		ConfigJson.load();
+		//getid = Integer.valueOf(ggetid).intValue();
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				label_1.setText("即将开始"+comboBox.getSelectedItem());
@@ -155,24 +159,35 @@ public class CoreGui extends JFrame {
 		comboBox.setBounds(10, 508, 230, 21);
 		contentPane.add(comboBox);
 		comboBox.setBackground(Color.WHITE);
-		comboBox.setSelectedIndex(getid);
+		comboBox.setFont(new Font("微软雅黑" ,Font.PLAIN,12));
+		//comboBox.setSelectedIndex(getid);
+		
+		
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+
 		tabbedPane.setBackground(Color.WHITE);
 		tabbedPane.setToolTipText("");
-		tabbedPane.setBounds(0, 0, 922, 498);
+		tabbedPane.setBounds(0, 0, 918, 498);
 		contentPane.add(tabbedPane);	
-		JEditorPane editorPane = new JEditorPane();
-		editorPane.setEditable(false);
-		tabbedPane.addTab("更新日志", null, editorPane, null);
 		tabbedPane.setVisible(true);
-		try {
-			editorPane.setPage("http://ip138.com");//更新日志网址
 
+		tabbedPane.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		
+		ScrollPane scrollPane = new ScrollPane();
+		tabbedPane.addTab("更新日志", null, scrollPane, null);
+
+		JEditorPane editorPane = new JEditorPane();
+		scrollPane.add(editorPane);
+		editorPane.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		editorPane.setEditable(false);
+		try {
+			editorPane.setPage("http://minecraft-goodtime.github.io/UpdateNotes");//更新日志网址
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
+
 		lblNewLabel.setFont(new Font("微软雅黑", Font.PLAIN, 12));
 		lblNewLabel.setBounds(556, 508, 57, 15);
 		contentPane.add(lblNewLabel);
@@ -204,6 +219,23 @@ public class CoreGui extends JFrame {
 		label_1.setBounds(556, 548, 205, 15);
 		contentPane.add(label_1);
 		label_1.setText("即将开始"+comboBox.getSelectedItem());
+		
+		JButton btnNewButton_3 = new JButton("\u65B0\u5EFA\u914D\u7F6E");
+		btnNewButton_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Tip dialog = new Tip();
+				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				dialog.setVisible(true);
+				dialog.setTitle("新建配置");
+				Tip.textField.setVisible(true);
+				Tip.label.setText("请输入新的配置名");
+			}
+		});
+		btnNewButton_3.setBackground(Color.LIGHT_GRAY);
+		btnNewButton_3.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+		btnNewButton_3.setBounds(130, 570, 110, 23);
+		contentPane.add(btnNewButton_3);
 		getTime();
 	}
 	
