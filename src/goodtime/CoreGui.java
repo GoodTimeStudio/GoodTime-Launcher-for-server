@@ -19,7 +19,6 @@ import com.google.gson.JsonSyntaxException;
 
 import java.awt.Color;
 
-import javax.swing.JDialog;
 import javax.swing.JTabbedPane;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -150,18 +149,18 @@ public class CoreGui extends JFrame {
 		//Info.getVersion();
 		ConfigJson.load();
 		//getid = Integer.valueOf(ggetid).intValue();
+		comboBox.setBounds(10, 508, 230, 21);
+		contentPane.add(comboBox);
+		comboBox.setBackground(Color.WHITE);
+		comboBox.setFont(new Font("微软雅黑" ,Font.PLAIN,12));
+		//comboBox.setSelectedIndex(getid);
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				label_1.setText("即将开始"+comboBox.getSelectedItem());
 			}
 		});
 		
-		comboBox.setBounds(10, 508, 230, 21);
-		contentPane.add(comboBox);
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setFont(new Font("微软雅黑" ,Font.PLAIN,12));
-		//comboBox.setSelectedIndex(getid);
-		
+
 		
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -224,10 +223,8 @@ public class CoreGui extends JFrame {
 		btnNewButton_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Tip dialog = new Tip();
-				dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-				dialog.setVisible(true);
-				dialog.setTitle("新建配置");
+				Tip.main(null);
+				Tip.dialog.setTitle("新建配置");
 				Tip.textField.setVisible(true);
 				Tip.label.setText("请输入新的配置名");
 			}

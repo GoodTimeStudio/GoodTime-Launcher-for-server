@@ -31,6 +31,9 @@ public static String java = "";
 public static String memory = "";
 public static String uuid = "";
 static String javaArgs;
+static JsonObject object = new JsonObject();
+static JsonArray array = new JsonArray();
+static JsonObject ver = new JsonObject();
 	
 	public static void main(String[] args) {
 		create();
@@ -69,15 +72,14 @@ static String javaArgs;
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		JsonObject object;
 		try {
 			object = (JsonObject) parser.parse(a);
-			JsonArray array = object.get("profiles").getAsJsonArray();
+			array = object.get("profiles").getAsJsonArray();
 			for (int i = 0; i < array.size(); i++) {
 				JsonObject pro = array.get(i).getAsJsonObject();
-				String p = pro.get("name").getAsString();
-				System.out.println(p);
-				CoreGui.comboBox.addItem(p);
+				profiles = pro.get("name").getAsString();
+				System.out.println("profiles="+profiles);
+				CoreGui.comboBox.addItem(profiles);
 			}
 
 		} catch (JsonIOException e) {
@@ -91,7 +93,8 @@ static String javaArgs;
 	
 	public static void save()
 	{
-		File file = new File(CfgPath);
+		load();
+		File file = new File(CfgPath);/*
 		String a = null;
 		try {
 			FileInputStream fip = new FileInputStream(file);
@@ -107,18 +110,17 @@ static String javaArgs;
 			e1.printStackTrace();
 		}
 
-		JsonObject object = new JsonObject();
-		JsonArray array = new JsonArray();
-		JsonObject ver = new JsonObject();
+*/
 		
-		JsonObject obj = (JsonObject) parser.parse(a);
-		JsonArray arr = obj.get("profiles").getAsJsonArray();
-		for (int i = 0; i < arr.size(); i++) {
+		//JsonObject obj = (JsonObject) parser.parse(a);
+		//JsonArray arr = obj.get("profiles").getAsJsonArray();
+		//for (int i = 0; i < arr.size(); i++) {
 			
-			JsonObject ao = arr.get(i).getAsJsonObject();
-			profiles = ao.get("name").getAsString();
-			System.out.println("pro="+i);
-			ver.addProperty("name", i);
+			//JsonObject ao = arr.get(i).getAsJsonObject();
+			//profiles = ao.get("name").getAsString();
+			//System.out.println("pro="+i);
+
+		ver.addProperty("name", profiles);
 			ver.addProperty("Version", Info.version);
 			ver.addProperty("GameDir", Info.gameDir);
 			ver.addProperty("launcherVisibilityOnGameClose", ConfigJson.LVO);
@@ -127,7 +129,7 @@ static String javaArgs;
 			ver.addProperty("javaArgs", ConfigJson.javaArgs);
 			array.add(ver);
 			
-		}
+		//}
 
 		//array.add(o);
 		
@@ -163,11 +165,9 @@ static String javaArgs;
 	
 	public static void first()
 	{
-		JsonObject object = new JsonObject();
 		//JsonObject pro = new JsonObject();
 		
-		JsonArray array = new JsonArray();
-		JsonObject ver = new JsonObject();
+
 		ver.addProperty("name", "Ä¬ÈÏÅäÖÃ");
 		ver.addProperty("Version", "");
 		//pro.add("Ä¬ÈÏ", ver);
@@ -195,7 +195,33 @@ static String javaArgs;
 	
 	public static void create()
 	{
-		
+		load();
+		JsonObject nv = new JsonObject();
+		nv.addProperty("name", Tip.Newpro);
+		nv.addProperty("Version", Info.version);
+		nv.addProperty("GameDir", Info.gameDir);
+		nv.addProperty("launcherVisibilityOnGameClose", ConfigJson.LVO);
+		nv.addProperty("Max-Memory", ConfigJson.memory);
+		nv.addProperty("java", ConfigJson.java);
+		nv.addProperty("javaArgs", ConfigJson.javaArgs);
+		array.add(nv);
+		object.add("profiles", array);
+		String json = object.toString();
+		System.out.println(json);
+		try {
+			File file = new File(CfgPath);
+			FileOutputStream fos = new FileOutputStream(file);
+			OutputStreamWriter osw = new OutputStreamWriter(fos , "UTF-8");
+			BufferedWriter bw = new BufferedWriter(osw);
+			bw.write(json);
+			
+			bw.close();
+			osw.close();
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	public static void delect()

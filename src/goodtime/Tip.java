@@ -14,7 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class Tip extends JDialog {
-
+	static Tip dialog;
+	static String Newpro;
 	/**
 	 * 
 	 */
@@ -28,7 +29,7 @@ public class Tip extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			Tip dialog = new Tip();
+			dialog = new Tip();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -69,7 +70,11 @@ public class Tip extends JDialog {
 					public void mouseClicked(MouseEvent e) {
 						if (label.getText() == "请输入新的配置名")
 						{
-							textField.getText();
+							Newpro = textField.getText();
+							ConfigJson.create();
+							dialog.setEnabled(false);
+							dialog.setVisible(false);
+							dialog.dispose();
 						}
 					}
 				});
